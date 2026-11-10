@@ -3,28 +3,26 @@ package org.example;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static int findMax(int a, int b) {
-        if (a > b) {
-            return a;
-        } else {
-            return b;
+    public static int difference(int x, int y){
+        if (x - y > 0) {
+            return x - y;
+        }
+        else {
+            return (x - y) * -1;
         }
     }
-
-    public static int squareArea(int side) {
-        return side * side;
+    public static double convertSecondsToMinutes(int seconds){
+        return (double) seconds / 60;
+    }
+    public static double circleCircumference(double radius){
+        return radius * 2 * Math.PI;
+    }
+    public static double celsiusToFahrenheit(double c) {
+        return c * 9 / 5 + 32;
     }
 
-    public static int squarePerimeter(int side) {
-        return 4 * side;
-    }
-
-    public static double findHypotenuse(double a, double b) {
-        return Math.sqrt(a * a + b * b);
-    }
-
-    public static double calculatePercentage(double part, double total) {
-        return (part / total) * 100;
+    public static double fahrenheitToCelsius(double f) {
+        return (f - 32) * 5 / 9;
     }
 
     public static void main(String[] args) {
@@ -33,22 +31,29 @@ public class Main {
         System.out.println("Разность: " + math.subtract(7, 2));
         System.out.println("Произведение: " + math.multiply(7, 2));
         System.out.println("Частное: " + math.divide(7, 2));
-        System.out.println("Максимум из 10 и 5: " + findMax(10, 5));
-        System.out.println("Максимум из 3 и 8: " + findMax(3, 8));
-        System.out.println("Площадь квадрата: " + squareArea(5));
-        System.out.println("Периметр квадрата: " + squarePerimeter(5));
-        System.out.println("Гипотенуза (3 и 4): " + findHypotenuse(3, 4));
-        System.out.println("Гипотенуза (5 и 12): " + findHypotenuse(5, 12));
-        System.out.println("Процент: " + calculatePercentage(25, 200));
 
-        BankAccount acc1 = new BankAccount("Анна", 50000.0);
-        BankAccount acc2 = new BankAccount("Борис", 15000.0);
+        System.out.println("Модуль (10 - 4): " + difference(10, 4));
+        System.out.println("Модуль (4 - 10): " + difference(4, 10));
 
-        acc1.deposit(100000.0);
-        acc2.withdraw(20000.0);
+        System.out.println("Минут: " + convertSecondsToMinutes(120));
+        System.out.println("Минут: " + convertSecondsToMinutes(90));
 
-        System.out.println("Владелец: " + acc1.getOwner() + ", баланс: " + acc1.getBalance() + ", богатый счёт: " + acc1.isRich());
-        System.out.println("Владелец: " + acc2.getOwner() + ", баланс: " + acc2.getBalance() + ", богатый счёт: " + acc2.isRich());
+        System.out.println("Длина окружности (r=5): " + circleCircumference(5.0));
+        System.out.println("Длина окружности (r=10): " + circleCircumference(10.0));
+
+        double f = celsiusToFahrenheit(100.0);
+        System.out.println("100.0 C = " + f + " F");
+        System.out.println(f + " F = " + fahrenheitToCelsius(f) + " C");
+
+        Product p1 = new Product("Ноутбук", 50000.0, 10);
+        Product p2 = new Product("Телефон", 30000.0, 5);
+
+        p1.addStock(5);
+        p1.sell(3);
+        p2.sell(10);
+
+        System.out.println("Товар: " + p1.getName() + ", количество: " + p1.getQuantity() + ", общая стоимость: " + p1.totalCost() + ", доступен: " + p1.isAvailable());
+        System.out.println("Товар: " + p2.getName() + ", quantity: " + p2.getQuantity() + ", общая стоимость: " + p2.totalCost() + ", доступен: " + p2.isAvailable());
     }
 
 
